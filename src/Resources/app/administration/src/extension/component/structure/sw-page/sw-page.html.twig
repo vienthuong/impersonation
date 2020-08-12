@@ -1,0 +1,17 @@
+{% block sw_page_top_bar_actions %}
+    <div class="sw-page__top-bar-actions" :style="topBarActionStyles">
+        {% block sw_page_leave_impersonation_button %}
+            <sw-button v-if="isImpersonating"
+                       class="impersonation-btn"
+                       variant="danger"
+                       size="x-small"
+                       :disabled="isLoading"
+                       :isLoading="isLoading"
+                       @click="leaveImpersonation">{{ $tc('impersonation.actions.leaveImpersonation') }}</sw-button>
+        {% endblock %}
+
+        {% block sw_page_notification_center %}
+            <sw-notification-center></sw-notification-center>
+        {% endblock %}
+    </div>
+{% endblock %}

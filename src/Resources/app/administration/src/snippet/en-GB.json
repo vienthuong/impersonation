@@ -1,0 +1,8 @@
+{
+    "impersonation": {
+        "actions": {
+            "impersonate": "Impersonate",
+            "leaveImpersonation": "Leave impersonation"
+        }
+    }
+}
