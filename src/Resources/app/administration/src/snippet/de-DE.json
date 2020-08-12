@@ -1,0 +1,8 @@
+{
+    "impersonation": {
+        "actions": {
+            "impersonate": "Imitieren",
+            "leaveImpersonate": "Imitieren lassen"
+        }
+    }
+}

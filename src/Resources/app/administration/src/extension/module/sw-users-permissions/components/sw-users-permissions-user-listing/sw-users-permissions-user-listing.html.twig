@@ -1,0 +1,12 @@
+{% block sw_settings_user_list_actions_edit %}
+    {% parent() %}
+
+    {% block sw_settings_user_list_actions_impersonate %}
+        <sw-context-menu-item
+            :disabled="currentUser.id === item.id"
+            class="sw-settings-user-list__user-view-action"
+            @click="impersonate(item.id)">
+            {{ $tc('impersonation.actions.impersonate') }}
+        </sw-context-menu-item>
+    {% endblock %}
+{% endblock %}

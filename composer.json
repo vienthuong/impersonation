@@ -1,0 +1,39 @@
+{
+  "name": "vienthuong/impersonation",
+  "description": "A Shopware 6 Impersonation plugin",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Thuong Le",
+          "email": "levienthuong@gmail.com"
+      }
+  ],
+  "autoload": {
+    "psr-4": {
+      "VienThuong\\Impersonation\\": "src/"
+    }
+  },
+  "require": {
+      "shopware/core": "~6.3.0"
+  },
+  "extra": {
+    "shopware-plugin-class": "VienThuong\\Impersonation\\Impersonation",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "copyright": "(c) by Thuong Le<levienthuong@gmail.com>",
+    "label": {
+        "de-DE": "Benutzeridentitäts-Plugin für Shopware 6",
+        "en-GB": "User Impersonation Plugin for Shopware 6"
+    },
+    "description": {
+        "de-DE": "Erlauben Sie dem Administrator, sich als Benutzer auszugeben",
+        "en-GB": "Allow administrator to impersonate any user"
+    }
+  },
+  "conflict": {
+      "shopware/storefront": "<6,>=7",
+      "shopware/administration": "<6,>=7"
+  },
+  "prefer-stable": true
+}
