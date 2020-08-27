@@ -2,10 +2,12 @@
     <div class="sw-page__top-bar-actions" :style="topBarActionStyles">
         {% block sw_page_leave_impersonation_button %}
             <sw-button v-if="isImpersonating"
+                       class="impersonation-btn"
                        variant="danger"
-                       @click="leaveImpersonation">
-                {{ $tc('impersonation.actions.leaveImpersonation') }}
-            </sw-button>
+                       size="x-small"
+                       :disabled="isLoading"
+                       :isLoading="isLoading"
+                       @click="leaveImpersonation">{{ $tc('impersonation.actions.leaveImpersonation') }}</sw-button>
         {% endblock %}
 
         {% block sw_page_notification_center %}

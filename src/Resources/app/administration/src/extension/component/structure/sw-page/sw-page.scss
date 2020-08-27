@@ -4,9 +4,20 @@
             justify-content: space-evenly;
             align-items: center;
 
+            .impersonation-btn {
+                z-index: 800;
+                max-width: 100px;
+                margin-right: 10px;
+
+                .sw-button__content {
+                    word-break: break-word;
+                    white-space: pre-wrap;
+                }
+            }
+
             @media screen and (max-width: 700px) {
-                button {
-                    z-index: 800;
+                .impersonation-btn {
+                    max-width: initial;
                     border-radius: 0;
                     position: fixed;
                     bottom: 0;

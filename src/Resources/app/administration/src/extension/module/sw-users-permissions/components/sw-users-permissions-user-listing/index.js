@@ -1,21 +1,34 @@
 import template from './sw-users-permissions-user-listing.html.twig';
-import initializeUserContext from 'src/app/init-post';
-import { IMPERSONATING_ATTRIBUTE_KEY } from '../../../../../constant/impersonation.constant';
-const { Component } = Shopware;
+const { Component, Service, State } = Shopware;
 
 const componentConfiguration = {
     computed: {
-        currentUser() {
-            return Shopware.State.get('session').currentUser;
+        impersonationService() {
+            return Service('impersonationService');
         },
+
+        currentUser() {
+            return State.get('session').currentUser;
+        },
+
+        canImpersonate() {
+            return !!this.currentUser.admin;
+        },
+
+        isImpersonating() {
+            return this.impersonationService.isImpersonating();
+        }
     },
 
     methods: {
         async impersonate(userId) {
+            if (!this.canImpersonate) {
+                return;
+            }
+
             this.isLoading = true;
 
-            localStorage.setItem(IMPERSONATING_ATTRIBUTE_KEY, userId);
-            await initializeUserContext.userInformation();
+            await this.impersonationService.impersonate(userId);
 
             this.isLoading = false;
 

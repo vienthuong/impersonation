@@ -1,4 +1,4 @@
-import './init/impersonate-service';
+import './init/impersonation.init';
 import './extension/module/sw-users-permissions/components/sw-users-permissions-user-listing';
 import './extension/component/structure/sw-page';
 
