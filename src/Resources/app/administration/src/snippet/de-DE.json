@@ -2,7 +2,7 @@
     "impersonation": {
         "actions": {
             "impersonate": "Imitieren",
-            "leaveImpersonate": "Imitieren lassen"
+            "leaveImpersonation": "Imitierung verlassen"
         }
     }
 }
