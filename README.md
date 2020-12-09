@@ -1,5 +1,9 @@
 # Users Impersonation for Shopware 6
 
+# Install via Packagist: 
+
+composer require vienthuong/impersonation
+
 ## A plugin for [Shopware 6](https://github.com/shopware/platform)
 
 ![](https://i.imgur.com/J6acaI9.png)
