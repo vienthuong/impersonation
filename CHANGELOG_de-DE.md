@@ -1,3 +1,6 @@
+# 1.1.0 - 6.4 Compatibility
+- Add compatible with shopware 6.4
+
 # 1.0.0 - Erste Veröffentlichung
 
 - Erlauben Sie nur Administratoren, sich auszugeben.
