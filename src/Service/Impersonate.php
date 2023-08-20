@@ -7,32 +7,17 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class Impersonate implements CanImpersonate
 {
-    public const IMPERSONATING_ATTRIBUTE_KEY = 'impersonated-user-id';
-    public const IMPERSONATING_PRIVILEGE = 'permissions.impersonating';
+    final public const IMPERSONATING_ATTRIBUTE_KEY = 'impersonated-user-id';
+    final public const IMPERSONATING_PRIVILEGE = 'permissions.impersonating';
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private ?string $impersonatedUserIdentifier = null;
 
-    /**
-     * @var string
-     */
-    private $impersonatedUserIdentifier;
+    private ?string $impersonatedUserId = null;
 
-    /**
-     * @var string
-     */
-    private $impersonatedUserId;
+    private ?string $impersonatingUserId = null;
 
-    /**
-     * @var string
-     */
-    private $impersonatingUserId;
-
-    public function __construct(Connection $connection)
+    public function __construct(private readonly Connection $connection)
     {
-        $this->connection = $connection;
     }
 
     public function setImpersonatingUserId(string $impersonatingUserId): void
@@ -45,9 +30,6 @@ class Impersonate implements CanImpersonate
         $this->impersonatedUserIdentifier = $impersonatedUserIdentifier;
     }
 
-    /**
-     * @return string
-     */
     public function getImpersonatedUserId(): string
     {
         return $this->impersonatedUserId;
@@ -61,8 +43,8 @@ class Impersonate implements CanImpersonate
             ->from('user')
             ->where('id = :id')
             ->setParameter('id', Uuid::fromHexToBytes($this->impersonatedUserIdentifier))
-            ->execute()
-            ->fetch();
+            ->executeQuery()
+            ->fetchAssociative();
 
         $this->impersonatedUserId = $user ? Uuid::fromBytesToHex($user['id']) : null;
     }
@@ -74,23 +56,18 @@ class Impersonate implements CanImpersonate
         if (!$this->impersonatedUserId || !$this->impersonatingUserId) {
             return false;
         }
-
-        if ($this->isAdmin($this->impersonatingUserId) || $this->hasPrivilege()) {
-            return true;
-        }
-
-        return false;
+        return $this->isAdmin($this->impersonatingUserId) || $this->hasPrivilege();
     }
 
     private function hasPrivilege(): bool
     {
-        // TODO: check if user has impersonation Privilidges
+        // TODO: check if user has impersonation Privileges
         return false;
     }
 
     private function isAdmin(string $userId): bool
     {
-        return (bool) $this->connection->fetchColumn(
+        return (bool) $this->connection->fetchFirstColumn(
             'SELECT admin FROM `user` WHERE id = :id',
             ['id' => Uuid::fromHexToBytes($userId)]
         );

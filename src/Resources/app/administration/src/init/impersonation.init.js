@@ -1,4 +1,3 @@
-import { IMPERSONATING_ATTRIBUTE_KEY } from '../constant/impersonation.constant';
 import ImpersonationService from '../service/impersonation.service';
 
 const { State, Application } = Shopware;
