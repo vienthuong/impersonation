@@ -16,22 +16,11 @@ class ApiImpersonateListener implements EventSubscriberInterface
 {
     use RouteScopeCheckTrait;
 
-    /**
-     * @var Impersonate
-     */
-    private $impersonateService;
-
-    /**
-     * @var RouteScopeRegistry
-     */
-    private $routeScopeRegistry;
-
     public function __construct(
-        CanImpersonate $impersonateService,
-        RouteScopeRegistry $routeScopeRegistry
-    ) {
-        $this->impersonateService = $impersonateService;
-        $this->routeScopeRegistry = $routeScopeRegistry;
+        private readonly CanImpersonate $impersonateService,
+        private readonly RouteScopeRegistry $routeScopeRegistry
+    )
+    {
     }
 
     public static function getSubscribedEvents(): array

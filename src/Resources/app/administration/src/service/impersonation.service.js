@@ -1,6 +1,6 @@
-import { initializeUserNotifications } from 'src/app/state/notification.store';
 import {IMPERSONATING_ATTRIBUTE_KEY} from "../constant/impersonation.constant";
-const { State } = Shopware;
+
+const { Application, State } = Shopware;
 
 class ImpersonationService {
     constructor(impersonatingUser, container, httpClient) {
@@ -45,7 +45,7 @@ class ImpersonationService {
 
         State.commit('context/setApiLanguageId', State.get('session').languageId);
 
-        initializeUserNotifications();
+        this.initializeUserNotifications();
     }
 
     _initializeService() {
@@ -70,6 +70,13 @@ class ImpersonationService {
                 await this.leaveImpersonation();
             }
         });
+    }
+
+    initializeUserNotifications() {
+        if (Application.getApplicationRoot().$store) {
+            Application.getApplicationRoot().$store.commit('notification/setNotificationsForCurrentUser');
+            return;
+        }
     }
 }
 
