@@ -1,7 +1,7 @@
 {
   "name": "vienthuong/impersonation",
   "description": "A Shopware 6 Impersonation plugin",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "shopware-platform-plugin",
   "license": "MIT",
   "authors": [
@@ -16,7 +16,7 @@
     }
   },
   "require": {
-      "shopware/core": "~6.5.0"
+      "shopware/core": "~6.5.0||~6.6.0"
   },
   "extra": {
     "shopware-plugin-class": "VienThuong\\Impersonation\\Impersonation",
