@@ -1,6 +1,6 @@
 import {IMPERSONATING_ATTRIBUTE_KEY} from "../constant/impersonation.constant";
 
-const { Application, State } = Shopware;
+const { Application} = Shopware;
 
 class ImpersonationService {
     constructor(impersonatingUser, container, httpClient) {
@@ -39,11 +39,11 @@ class ImpersonationService {
     }
 
     async _initializeUser(user) {
-        State.commit('setCurrentUser', user);
+        const session = Shopware.Store.get('session');
+        session.setCurrentUser(user);
 
         await this.localeHelper.setLocaleWithId(user.localeId);
-
-        State.commit('context/setApiLanguageId', State.get('session').languageId);
+        Shopware.Store.get('context').setApiLanguageId(session.languageId);
 
         this.initializeUserNotifications();
     }

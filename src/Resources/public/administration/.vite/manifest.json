@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "js/impersonation.js",
+    "name": "impersonation",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "css/impersonation.css"
+    ]
+  }
+}
