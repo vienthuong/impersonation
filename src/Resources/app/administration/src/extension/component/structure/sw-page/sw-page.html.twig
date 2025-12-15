@@ -3,11 +3,13 @@
         {% block sw_page_leave_impersonation_button %}
             <sw-button v-if="isImpersonating"
                        class="impersonation-btn"
-                       variant="danger"
+                       variant="critical"
                        size="x-small"
                        :disabled="isLoading"
                        :isLoading="isLoading"
-                       @click="leaveImpersonation">{{ $tc('impersonation.actions.leaveImpersonation') }}</sw-button>
+                       @click="leaveImpersonation">
+                {{ $tc('impersonation.actions.leaveImpersonation') }}
+            </sw-button>
         {% endblock %}
 
         {% block sw_page_notification_center %}

@@ -1,7 +1,7 @@
 import template from './sw-page.html.twig';
 import './sw-page.scss';
 
-const { Component, State, Service } = Shopware;
+const { Component, Service } = Shopware;
 
 Component.override('sw-page', {
     template,
@@ -14,7 +14,7 @@ Component.override('sw-page', {
 
     computed: {
         currentUser() {
-            return State.get('session').currentUser;
+            return Shopware.Store.get('session').currentUser;
         },
 
         pageClasses() {
@@ -30,7 +30,6 @@ Component.override('sw-page', {
         isImpersonating() {
             return this.impersonationService.isImpersonating();
         }
-
     },
 
     methods: {

@@ -39,7 +39,7 @@ class Impersonate implements CanImpersonate
     {
         $builder = $this->connection->createQueryBuilder();
 
-        $user = $builder->select(['user.id'])
+        $user = $builder->select('user.id')
             ->from('user')
             ->where('id = :id')
             ->setParameter('id', Uuid::fromHexToBytes($this->impersonatedUserIdentifier))
